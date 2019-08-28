@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'whats-your-vibe-backoffice';
+  title = 'WYV - Back Office v1.0';
 }
