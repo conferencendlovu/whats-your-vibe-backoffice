@@ -77,4 +77,26 @@ export class FirebaseService {
 
   }
 
+  public categories() {
+
+    return this.db.collection('categories')
+      .valueChanges();
+
+  }
+
+  public addCategory(category) {
+
+    const key = "CAT" + new Date().getTime();
+
+    category.key = key;
+
+    return this.db.collection('categories').doc(key).set(category);
+
+  }
+
+  public removeCategory(key) {
+
+    return this.db.collection('categories').doc(key).delete();
+  }
+
 }
