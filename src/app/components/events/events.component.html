@@ -3,16 +3,22 @@
   <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3> Events </h3>
+        <h3>Events</h3>
       </div>
 
       <div class="title_right">
-        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        <div
+          class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"
+        >
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search for..."
+            />
             <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+              <button class="btn btn-default" type="button">Go!</button>
+            </span>
           </div>
         </div>
       </div>
@@ -24,31 +30,29 @@
       <div class="col-md-12">
         <div class="x_panel">
           <div class="x_content">
+            <table class="table table-sm table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Event Name</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Date & Time</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
 
-            <div class="row">
-              <div class="col-md-3" *ngFor="let event of events">
-                <div class="thumbnail">
-                  <div class="image view view-first">
-                    <img style="width: 100%; display: block;" src="{{event.poster}}" alt="image" />
-                    <div class="mask">
-                      <!--<h4 style="color: #fff;">Event Creator</h4>-->
-                      <p>{{event.description}}</p>
-                      <div class="tools tools-bottom">
-                        <a href="#"><i class="fa fa-link"></i></a>
-                        <a href="#"><i class="fa fa-pencil"></i></a>
-                        <a href="#"><i class="fa fa-times"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="caption">
-                    <h5>{{event.name}}</h5>
-                    <p>{{event.creatorDisplayName}}</p>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
+              <tbody>
+                <tr *ngFor="let event of events">
+                  <td>{{ event.title }}</td>
+                  <td>{{ event.category }}</td>
+                  <td>{{ event.location }}</td>
+                  <td>{{ event.date }}, {{ event.time }}</td>
+                  <td>{{ event.status }}</td>
+                  <td><span class="btn btn-sm btn-danger">delete</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

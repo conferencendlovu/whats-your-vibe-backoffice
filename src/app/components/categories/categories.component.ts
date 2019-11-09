@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { read } from 'fs';
+// import { read } from 'fs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 
@@ -16,8 +16,8 @@ export class CategoriesComponent implements OnInit {
   addCategoryForm: FormGroup;
   editCategoryForm: FormGroup;
   selectedImage: any = null;
-  imgSrc: string = '/assets/images/place_holder_image.png';
-  editImage : string;
+  imgSrc = '/assets/images/place_holder_image.png';
+  editImage: string;
 
   constructor(private service: FirebaseService, private formBuilder: FormBuilder, private storage: AngularFireStorage) { }
 
@@ -69,9 +69,9 @@ export class CategoriesComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]);
 
-      this.selectedImage = event.target.files[0]
+      this.selectedImage = event.target.files[0];
 
-    } else { //if no file was selected, reset to default
+    } else { // if no file was selected, reset to default
       this.selectedImage = null;
       this.imgSrc = '/assets/images/place_holder_image.png';
     }
@@ -88,7 +88,7 @@ export class CategoriesComponent implements OnInit {
       .pipe(finalize(() => {
 
         fileRef.getDownloadURL().subscribe(url => {
-          formData['url'] = url;
+          formData.url = url;
 
 
           this.service.addCategory(formData).then(() => {
@@ -98,7 +98,7 @@ export class CategoriesComponent implements OnInit {
             this.initForm();
           })
             .catch(err => {
-              console.log("An error occured");
+              console.log('An error occured');
             });
 
         });

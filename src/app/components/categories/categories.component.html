@@ -10,7 +10,7 @@
       <div class="clearfix"></div>
       <div class="row">
         <div class="col-md-12">
-          <button  data-toggle="modal" data-target="#addCategoryModal">Add Category</button>
+          <p class="btn btn-primary" role="button"  data-toggle="modal" data-target="#addCategoryModal">Add Category</p>
 
           <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModal"
             aria-hidden="true">
@@ -41,7 +41,7 @@
 
                     <div class="form-group">
                         <input type="file" class="form-control" id="url" formControlName="url" accept="image/*" (change)="showPreview($event)">
-                    
+
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
@@ -66,7 +66,7 @@
                         <!--<h4 style="color: #fff;">Event Creator</h4>-->
                         <p>{{catergory.description}}</p>
                         <div class="tools tools-bottom">
-                    
+
                           <p (click)="removeCategory(catergory.key)"><i class="fa fa-times"></i></p>
                         </div>
                       </div>
