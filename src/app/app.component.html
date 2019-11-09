@@ -1,10 +1,11 @@
-
 <div class="container body">
   <div class="main_container">
-    <div class="col-md-3 left_col">
+    <div class="col-md-3 left_col" *ngIf="user">
       <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-          <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>WYV Back Office</span></a>
+          <a href="index.html" class="site_title"
+            ><i class="fa fa-paw"></i> <span>WYV Back Office</span></a
+          >
         </div>
 
         <div class="clearfix"></div>
@@ -12,7 +13,11 @@
         <!-- menu profile quick info -->
         <div class="profile clearfix">
           <div class="profile_pic">
-            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+            <img
+              src="images/img.jpg"
+              alt="..."
+              class="img-circle profile_img"
+            />
           </div>
           <div class="profile_info">
             <span>Welcome,</span>
@@ -28,26 +33,45 @@
           <div class="menu_section">
             <h3>General</h3>
             <ul class="nav side-menu">
-              <li><a routerLink="/home"><i class="fa fa-home"></i> Home </a> </li>
-              <li><a routerLink="/memberships"><i class="fa fa-edit"></i> Memberships</a></li>
-              <li><a routerLink="/events"><i class="fa fa-edit"></i> Events</a></li>
-              <li><a routerLink="/categories"><i class="fa fa-desktop"></i> Categories</a> </li>
+              <li>
+                <a routerLink="/home"><i class="fa fa-home"></i> Home </a>
+              </li>
+              <li>
+                <a routerLink="/memberships"
+                  ><i class="fa fa-edit"></i> Memberships</a
+                >
+              </li>
+              <li>
+                <a routerLink="/events"><i class="fa fa-edit"></i> Events</a>
+              </li>
+              <li>
+                <a routerLink="/categories"
+                  ><i class="fa fa-desktop"></i> Categories</a
+                >
+              </li>
             </ul>
           </div>
           <div class="menu_section">
             <h3>Users</h3>
             <ul class="nav side-menu">
-              <li><a routerLink="/businesses"><i class="fa fa-bug"></i> Business</a></li>
-              <li><a routerLink="/consumers"><i class="fa fa-windows"></i> Vibers</a></li>
+              <li>
+                <a routerLink="/businesses"
+                  ><i class="fa fa-bug"></i> Business</a
+                >
+              </li>
+              <li>
+                <a routerLink="/consumers"
+                  ><i class="fa fa-windows"></i> Vibers</a
+                >
+              </li>
             </ul>
           </div>
-
         </div>
         <!-- /sidebar menu -->
       </div>
     </div>
     <!-- top navigation -->
-    <div class="top_nav">
+    <div class="top_nav" *ngIf="user">
       <div class="nav_menu">
         <nav>
           <div class="nav toggle">
@@ -56,13 +80,22 @@
 
           <ul class="nav navbar-nav navbar-right">
             <li class="">
-              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="images/img.jpg" alt="">Lesego King
+              <a
+                href="javascript:;"
+                class="user-profile dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img src="images/img.jpg" alt="" />{{ user?.displayName }}
                 <span class=" fa fa-angle-down"></span>
               </a>
               <ul class="dropdown-menu dropdown-usermenu pull-right">
                 <li><a href=""> Profile</a></li>
-                <li><a href=""><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                <li *ngIf="user" (click)="logout()">
+                  <a href=""
+                    ><i class="fa fa-sign-out pull-right"></i> Log Out</a
+                  >
+                </li>
               </ul>
             </li>
           </ul>
@@ -71,16 +104,15 @@
     </div>
     <!-- /top navigation -->
 
-<router-outlet></router-outlet>
+    <router-outlet></router-outlet>
     <!-- footer content -->
-    <footer>
+    <footer *ngIf="user">
       <div class="pull-right">
-        WYV Back Office - Developed by <a href="https://www.jaspa.co.za">Jaspa Software</a>
+        WYV Back Office - Developed by
+        <a href="https://www.jaspa.co.za">Jaspa Software</a>
       </div>
       <div class="clearfix"></div>
     </footer>
     <!-- /footer content -->
   </div>
 </div>
-
-
