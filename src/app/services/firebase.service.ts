@@ -42,7 +42,7 @@ export class FirebaseService {
   }
 
   public events() {
-    return this.db.collection("vibes").valueChanges();
+    return this.db.collection("vibes").snapshotChanges();
   }
 
   public event(id: string) {

@@ -1,62 +1,98 @@
-<!-- page content -->
-<div class="right_col" role="main">
-  <div class="">
-    <div class="page-title">
-      <div class="title_left">
-        <h3>Events</h3>
-      </div>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">
+    Events
+    <span
+      data-toggle="modal"
+      data-target="#createOrderModal"
+      class=" btn btn-danger btn-sm float-md-right"
+      ><i class="fa fa-trash" aria-hidden="true"></i> Delete All Events</span
+    >
+  </h1>
 
-      <div class="title_right">
-        <div
-          class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h5 class="m-0 font-weight-bold text-primary">
+        All Events
+        <button
+          class="btn btn-sm btn-primary float-md-right"
+          (click)="exportAsXLSX()"
         >
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search for..."
-            />
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
-            </span>
-          </div>
-        </div>
-      </div>
+          <i class="fa fa-file-excel" aria-hidden="true"></i> Export to Excel
+        </button>
+      </h5>
     </div>
+    <div class="card-body">
+      <div *ngIf="available; then thenBlock; else elseBlock"></div>
+      <ng-template #thenBlock>
+        <div class="table-responsive">
+          <div class="search-hero col-5 mt-3 mb-2">
+            <input
+              class="form-control"
+              type="text"
+              name="search"
+              [(ngModel)]="searchText"
+              autocomplete="off"
+              placeholder="Search by event title"
+            />
+          </div>
 
-    <div class="clearfix"></div>
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th style="width: 15%">Title</th>
+                <th style="width: 25%">Location</th>
+                <th style="width: 25%">Description</th>
+                <th style="width: 10%">Category</th>
+                <th style="width: 10%">Status</th>
+                <th style="width: 15%">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let event of events
+                    | filter: searchText
+                    | paginate: { itemsPerPage: 5, currentPage: p }
+                "
+              >
+                <td>{{ event.title }}</td>
+                <td>{{ event.location }}</td>
+                <td>{{ event.description }}</td>
+                <td>{{ event.category }}</td>
+                <td>{{ event.status }}</td>
+                <td>
+                  <span
+                    data-toggle="modal"
+                    data-target="#createOrderModal"
+                    class=" btn btn-success btn-sm mr-1"
+                    ><i class="fa fa-eye" aria-hidden="true"></i
+                  ></span>
+                  <span
+                    data-toggle="modal"
+                    data-target="#createOrderModal"
+                    class=" btn btn-danger btn-sm mr-1"
+                    ><i class="fa fa-trash" aria-hidden="true"></i
+                  ></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="x_panel">
-          <div class="x_content">
-            <table class="table table-sm table-dark">
-              <thead>
-                <tr>
-                  <th scope="col">Event Name</th>
-                  <th scope="col">Category</th>
-                  <th scope="col">Location</th>
-                  <th scope="col">Date & Time</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr *ngFor="let event of events">
-                  <td>{{ event.title }}</td>
-                  <td>{{ event.category }}</td>
-                  <td>{{ event.location }}</td>
-                  <td>{{ event.date }}, {{ event.time }}</td>
-                  <td>{{ event.status }}</td>
-                  <td><span class="btn btn-sm btn-danger">delete</span></td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="row">
+            <div class="col-12 mt-3 mb-3  text-center">
+              <pagination-controls
+                (pageChange)="p = $event"
+              ></pagination-controls>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-template>
+      <ng-template #elseBlock>
+        <h4>No events available</h4>
+      </ng-template>
     </div>
   </div>
+  <!-- /.container-fluid -->
 </div>
-<!-- /page content -->

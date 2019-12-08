@@ -8,32 +8,9 @@ import { BehaviorSubject } from "rxjs";
   providedIn: "root"
 })
 export class AuthService {
-  private eventAuthError = new BehaviorSubject<string>("");
-
-  eventAuthError$ = this.eventAuthError.asObservable();
-
-  loggedInUser: any;
-
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
 
   getUserState() {
     return this.afAuth.authState;
-  }
-
-  loginUser(user) {
-    this.afAuth.auth
-      .signInWithEmailAndPassword(user.email, user.password)
-      .then(userCredentials => {
-        console.log("Working");
-        this.loggedInUser = userCredentials;
-        this.router.navigate(["/home"]);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  logOutUser() {
-    return this.afAuth.auth.signOut();
   }
 }

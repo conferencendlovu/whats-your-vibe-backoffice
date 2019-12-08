@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "./services/auth.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -8,21 +7,9 @@ import { Router } from "@angular/router";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  title = "WYV - Back Office v1.0";
+  title = "Whats Your Vibe - Administration Console 0.0.1";
 
-  user: firebase.User;
+  constructor(private router: Router) {}
 
-  constructor(private as: AuthService, private router: Router) {}
-
-  ngOnInit() {
-    this.as.getUserState().subscribe(user => {
-      this.user = user;
-    });
-  }
-
-  logOut() {
-    this.as.logOutUser().then(() => {
-      this.router.navigate(["/login"]);
-    });
-  }
+  ngOnInit() {}
 }

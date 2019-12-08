@@ -6,6 +6,8 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { environment } from "../environments/environment";
+import { Ng2SearchPipeModule } from "ng2-search-filter";
+import { NgxPaginationModule } from "ngx-pagination";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./components/home/home.component";
@@ -41,6 +43,8 @@ import { LoginComponent } from "./components/login/login.component";
     AngularFireStorageModule,
     AppRoutingModule,
     FormsModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
     ReactiveFormsModule
   ],
   providers: [FirebaseService],

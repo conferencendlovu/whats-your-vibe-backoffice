@@ -1,74 +1,104 @@
-<!-- page content -->
-<div class="right_col" role="main">
-  <!-- top tiles -->
-  <div class="row tile_count">
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-      <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
-      <div class="count">{{ totalBusiness + totalVibers }}</div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-      <span class="count_top"><i class="fa fa-clock-o"></i> Businesses</span>
-      <div class="count">{{ totalBusiness }}</div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-      <span class="count_top"><i class="fa fa-user"></i> Vibers</span>
-      <div class="count green">{{ totalVibers }}</div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-      <span class="count_top"><i class="fa fa-user"></i> Events</span>
-      <div class="count">{{ totalEvents }}</div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-      <span class="count_top"><i class="fa fa-user"></i> Events Checkins</span>
-      <div class="count">0</div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-      <span class="count_top"><i class="fa fa-user"></i> Shared Events</span>
-      <div class="count">0</div>
-    </div>
-  </div>
-  <!-- /top tiles -->
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <!--<div class="d-sm-flex align-items-center justify-content-between mb-4">-->
+  <!--<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>-->
+  <!--<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
+  <!--</div>-->
 
+  <!-- Content Row -->
   <div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-12">
-      <div class="x_panel tile fixed_height_320">
-        <div class="x_title">
-          <h2>Top Rated Events</h2>
-
-          <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-          <div class="widget_summary">
-            <div class="w_left w_35">
-              <span> No event rated</span>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+              >
+                Events
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">
+                0
+              </div>
             </div>
-            <div class="clearfix"></div>
+            <div class="col-auto">
+              <i class="fas fa-fw fa-glass-cheers fa-2x"></i>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-md-6 col-sm-6 col-xs-12">
-      <div class="x_panel tile fixed_height_320 overflow_hidden">
-        <div class="x_title">
-          <h2>User Leaderboard</h2>
-          <div class="clearfix"></div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-success text-uppercase mb-1"
+              >
+                Checkins
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">
+                0
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-tree fa-2x"></i>
+            </div>
+          </div>
         </div>
-        <div class="x_content">
-          <table class="" style="width:100%">
-            <tr>
-              <th style="width:77%;">
-                <p>Top 5</p>
-              </th>
-              <th>
-                <p class="">Vibe Points</p>
-              </th>
-            </tr>
-            <tr></tr>
-          </table>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-info text-uppercase mb-1"
+              >
+                Businessess
+              </div>
+              <div class="row no-gutters align-items-center">
+                <div class="col-auto">
+                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                    0
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-campground fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-success text-uppercase mb-1"
+              >
+                Vibers
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">
+                0
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-users fa-2x"></i>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- /page content -->
+<!-- /.container-fluid -->

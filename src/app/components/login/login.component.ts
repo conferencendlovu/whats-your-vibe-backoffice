@@ -35,10 +35,4 @@ export class LoginComponent implements OnInit {
       password: ["", Validators.required]
     });
   }
-
-  doLogin(formData) {
-    console.log(formData);
-
-    this.as.loginUser(formData.value);
-  }
 }
