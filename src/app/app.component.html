@@ -1,5 +1,5 @@
 <!-- Page Wrapper -->
-<div id="wrapper" *ngIf="authService.uid | async as uid; else login">
+<div id="wrapper" *ngIf="authService.uid; else login">
   <!-- Sidebar -->
   <ul
     class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
@@ -157,32 +157,39 @@
                   >
                     <div class="form-group">
                       <input
-                        formControlName="password"
-                        required
+                        formControlName="username"
                         type="text"
                         class="form-control form-control-user"
-                        id="username"
                         maxlength="10"
-                        aria-describedby="WYV Admin Username"
+                        required
                         placeholder="Username"
                       />
                     </div>
                     <div class="form-group">
                       <input
                         formControlName="password"
-                        required
                         type="password"
+                        required
                         class="form-control form-control-user"
-                        id="password"
                         placeholder="Password"
                       />
                     </div>
+
+                    <div
+                      *ngIf="errorMessage"
+                      class="alert alert-danger"
+                      role="alert"
+                    >
+                      {{ errorMessage }}
+                    </div>
+
                     <button
                       [disabled]="!loginForm.valid"
                       type="submit"
-                      class="btn btn-primary btn-user btn-block"
+                      class="btn btn-success btn-user btn-block pointer"
                     >
-                      Login
+                      {{ buttonText }}
+                      <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
                     </button>
                   </form>
                   <hr />

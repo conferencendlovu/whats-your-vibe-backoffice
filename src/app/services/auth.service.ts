@@ -9,33 +9,39 @@ import { auth } from "firebase";
   providedIn: "root"
 })
 export class AuthService {
-  uid = this.afAuth.authState.pipe(
-    map(authState => {
-      if (!authState) {
-        return null;
-      } else {
-        authState.uid;
-      }
-    })
-  );
-  username = observableOf("ConnieN");
+  uid;
+  username = observableOf("Administrator");
   isAdmin = observableOf(true);
   photoURl = observableOf("link-here");
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
+    this.getUserState();
+  }
 
   getUserState() {
+    this.uid = this.afAuth.authState.pipe(
+      map(authState => {
+        if (!authState) {
+          return null;
+        } else {
+          authState.uid;
+          console.log(authState.uid);
+        }
+      })
+    );
+
     return this.afAuth.authState;
   }
 
   doLogin(formData) {
-    this.afAuth.auth.signInWithEmailAndPassword(
-      formData.email,
-      formData.password
-    );
+    let username = formData.username.toString().trim() + "@wyv.io";
+    let password = formData.password.toString().trim();
+
+    return this.afAuth.auth.signInWithEmailAndPassword(username, password);
   }
 
   doLogout() {
     this.afAuth.auth.signOut();
+    this.getUserState();
   }
 }
