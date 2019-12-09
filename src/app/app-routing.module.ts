@@ -19,10 +19,6 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: "memberships",
-    component: MembershipsComponent
-  },
-  {
     path: "categories",
     component: CategoriesComponent
   },
@@ -33,14 +29,6 @@ const routes: Routes = [
   {
     path: "businesses",
     component: BusinessesComponent
-  },
-  {
-    path: "consumers",
-    component: ConsumersComponent
-  },
-  {
-    path: "analytics",
-    component: AnalyticsComponent
   },
   {
     path: "",

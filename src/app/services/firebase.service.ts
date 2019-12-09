@@ -23,36 +23,19 @@ export class FirebaseService {
     return this.db.collection("vibes").snapshotChanges();
   }
 
-  public membership(id: string) {
+  public updateEventStatus(event) {
     return this.db
-      .collection("memberships", ref => ref.where("id", "==", id))
-      .snapshotChanges();
+      .collection("vibes")
+      .doc(event.id)
+      .update({ status: event.status });
   }
 
-  public addMembership(membership) {
-    return this.db.collection("memberships").add(membership);
-  }
-
-  public editMembership(id) {
-    return this.db.collection("memberships", ref => ref.where("id", "==", id));
-  }
-
-  public deleteMembership(id) {
-    return this.db.collection("memberships", ref => ref.where("id", "==", id));
+  public deleteEvent(id) {
+    return this.db.collection("vibes", ref => ref.where("id", "==", id));
   }
 
   public events() {
     return this.db.collection("vibes").snapshotChanges();
-  }
-
-  public event(id: string) {
-    return this.db
-      .collection("events", ref => ref.where("id", "==", id))
-      .snapshotChanges();
-  }
-
-  public deleteEvent(id) {
-    return this.db.collection("events", ref => ref.where("id", "==", id));
   }
 
   public businessUsers() {
@@ -69,8 +52,10 @@ export class FirebaseService {
     );
   }
 
-  public categories() {
-    return this.db.collection("categories").valueChanges();
+  public getCategories() {
+    return this.db
+      .collection("categories", ref => ref.orderBy("title"))
+      .snapshotChanges();
   }
 
   public addCategory(category) {

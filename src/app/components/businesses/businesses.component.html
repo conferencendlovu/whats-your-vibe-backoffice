@@ -1,71 +1,100 @@
-<!-- page content -->
-<div class="right_col" role="main">
-  <div class="">
-    <div class="page-title">
-      <div class="title_left">
-        <h3>Registered Businesses</h3>
-      </div>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">
+    Business Accounts
+    <span
+      data-toggle="modal"
+      data-target="#createOrderModal"
+      class=" btn btn-danger btn-sm float-md-right"
+      ><i class="fa fa-trash" aria-hidden="true"></i> Delete All Businesses
+      Accounts</span
+    >
+  </h1>
 
-      <div class="title_right">
-        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-          </div>
-        </div>
-      </div>
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h5 class="m-0 font-weight-bold text-primary">
+        All Business Accounts
+        <button
+          class="btn btn-sm btn-primary float-md-right"
+          (click)="exportAsXLSX()"
+        >
+          <i class="fa fa-file-excel" aria-hidden="true"></i> Export to Excel
+        </button>
+      </h5>
     </div>
+    <div class="card-body">
+      <div *ngIf="available; then thenBlock; else elseBlock"></div>
+      <ng-template #thenBlock>
+        <div class="table-responsive">
+          <div class="search-hero col-5 mt-3 mb-2">
+            <input
+              class="form-control"
+              type="text"
+              name="search"
+              [(ngModel)]="searchText"
+              autocomplete="off"
+              placeholder="Search by event title"
+            />
+          </div>
 
-    <div class="clearfix"></div>
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th style="width: 20%">Name</th>
+                <th style="width: 25%">Email Address</th>
+                <th style="width: 15%">Contact Number</th>
+                <th style="width: 10%">Physical Address</th>
+                <th style="width: 10%">Membership</th>
+                <th style="width: 10%">Status</th>
+                <th style="width: 15%">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let event of events
+                    | filter: searchText
+                    | paginate: { itemsPerPage: 5, currentPage: p }
+                "
+              >
+                <td>{{ event.title }}</td>
+                <td>{{ event.location }}</td>
+                <td>{{ event.description }}</td>
+                <td>{{ event.category }}</td>
+                <td>{{ event.status }}</td>
+                <td>
+                  <span
+                    data-toggle="modal"
+                    data-target="#createOrderModal"
+                    class=" btn btn-success btn-sm mr-1"
+                    ><i class="fa fa-eye" aria-hidden="true"></i
+                  ></span>
+                  <span
+                    data-toggle="modal"
+                    data-target="#createOrderModal"
+                    class=" btn btn-danger btn-sm mr-1"
+                    ><i class="fa fa-trash" aria-hidden="true"></i
+                  ></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-    <div class="row">
-
-      <div class="clearfix"></div>
-
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-
-          <div class="x_content">
-
-            <div class="table-responsive">
-              <table class="table table-striped jambo_table bulk_action">
-                <thead>
-                <tr class="headings">
-
-                  <th class="column-title">Business Name </th>
-                  <th class="column-title">Address </th>
-                  <th class="column-title">Membership Plan</th>
-                  <th class="column-title">Email </th>
-                  <th class="column-title">Contact Number </th>
-                  <th class="column-title no-link last"><span class="nobr">Action</span>
-                  </th>
-                  <th class="bulk-actions" colspan="7">
-                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                  </th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr class="even pointer"  *ngFor="let businessUser of businessUsers" >
-                  <td class=" ">{{businessUser.businessName}}</td>
-                  <td class=" ">{{businessUser.businessAddress}}</td>
-                  <td class=" ">{{businessUser.membershipType}}</td>
-                  <td class=" ">{{businessUser.businessEmail}}</td>
-                  <td class=" ">{{businessUser.contactNumber}}</td>
-                  <td class=" last"><a href="#"><button class="btn btn-sm btn-dark">Suspend</button></a>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
+          <div class="row">
+            <div class="col-12 mt-3 mb-3  text-center">
+              <pagination-controls
+                (pageChange)="p = $event"
+              ></pagination-controls>
             </div>
-
-
           </div>
         </div>
-      </div>
+      </ng-template>
+      <ng-template #elseBlock>
+        <h4>No business accounts available</h4>
+      </ng-template>
     </div>
   </div>
+  <!-- /.container-fluid -->
 </div>
-<!-- /page content -->
