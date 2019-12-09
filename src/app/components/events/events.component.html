@@ -3,24 +3,12 @@
   <!-- Page Heading -->
   <h1 class="h3 mb-2 text-gray-800">
     Events
-    <span
-      data-toggle="modal"
-      data-target="#createOrderModal"
-      class=" btn btn-danger btn-sm float-md-right"
-      ><i class="fa fa-trash" aria-hidden="true"></i> Delete All Events</span
-    >
   </h1>
 
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h5 class="m-0 font-weight-bold text-primary">
         All Events
-        <button
-          class="btn btn-sm btn-primary float-md-right"
-          (click)="exportAsXLSX()"
-        >
-          <i class="fa fa-file-excel" aria-hidden="true"></i> Export to Excel
-        </button>
       </h5>
     </div>
     <div class="card-body">
@@ -42,11 +30,11 @@
             <thead>
               <tr>
                 <th style="width: 15%">Title</th>
-                <th style="width: 25%">Location</th>
+                <th style="width: 30%">Location</th>
                 <th style="width: 25%">Description</th>
                 <th style="width: 10%">Category</th>
                 <th style="width: 10%">Status</th>
-                <th style="width: 15%">Actions</th>
+                <th style="width: 10%">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -63,16 +51,7 @@
                 <td>{{ event.category }}</td>
                 <td>{{ event.status }}</td>
                 <td>
-                  <span
-                    data-toggle="modal"
-                    data-target="#createOrderModal"
-                    class=" btn btn-success btn-sm mr-1"
-                    ><i class="fa fa-eye" aria-hidden="true"></i
-                  ></span>
-                  <span
-                    data-toggle="modal"
-                    data-target="#createOrderModal"
-                    class=" btn btn-danger btn-sm mr-1"
+                  <span class=" btn btn-danger btn-sm mr-1 pointer"
                     ><i class="fa fa-trash" aria-hidden="true"></i
                   ></span>
                 </td>

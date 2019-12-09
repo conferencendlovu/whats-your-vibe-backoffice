@@ -13,9 +13,15 @@ export class HomeComponent implements OnInit {
 
   totalBusiness = 0;
 
+  totalCheckins = 0;
+
   constructor(private fs: FirebaseService) {}
 
   ngOnInit() {
+    this.updateCounters();
+  }
+
+  updateCounters() {
     this.fs.getTotalBusiness().subscribe(data => {
       this.totalBusiness = data.length;
     });
@@ -26,6 +32,11 @@ export class HomeComponent implements OnInit {
 
     this.fs.getTotalEvents().subscribe(data => {
       this.totalEvents = data.length;
+    });
+
+    this.fs.getTotalCheckins().subscribe(data => {
+      console.log(data);
+      this.totalCheckins = data.length;
     });
   }
 }

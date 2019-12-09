@@ -2,13 +2,13 @@
 <div class="container-fluid">
   <!-- Page Heading -->
   <h1 class="h3 mb-2 text-gray-800">
-    Business Accounts
+    Vibers Accounts
   </h1>
 
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h5 class="m-0 font-weight-bold text-primary">
-        All Business Accounts
+        All Vibers Accounts
       </h5>
     </div>
     <div class="card-body">
@@ -22,7 +22,7 @@
               name="search"
               [(ngModel)]="searchText"
               autocomplete="off"
-              placeholder="Search by event title"
+              placeholder="Search by name"
             />
           </div>
 
@@ -33,43 +33,47 @@
           >
             <thead>
               <tr>
-                <th style="width: 5%;">Logo</th>
-                <th style="width: 15%">Name</th>
+                <th style="width: 5%;">Avatar</th>
+                <th style="width: 15%">Display Name</th>
                 <th style="width: 15%">Email Address</th>
-                <th style="width: 10%">Contact Number</th>
-                <th style="width: 15%">Physical Address</th>
-                <th style="width: 10%">Membership</th>
+                <th style="width: 10%">Gender</th>
+                <th style="width: 15%">Town</th>
+                <th style="width: 15%">Province</th>
+                <th style="width: 15%">Points</th>
+                <th style="width: 15%">Events Rated</th>
                 <th style="width: 10%">Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr
                 *ngFor="
-                  let business of businessUsers
+                  let viber of vibers
                     | filter: searchText
                     | paginate: { itemsPerPage: 5, currentPage: p }
                 "
               >
                 <td>
                   <img
-                    [src]="business.businessLogo"
+                    [src]="viber.photoUrl"
                     class="rounded"
                     width="50px"
                     height="50px"
                   />
                 </td>
-                <td>{{ business.businessName }}</td>
-                <td>{{ business.businessEmail }}</td>
-                <td>{{ business.businessContactNumber }}</td>
-                <td>{{ business.businessAddress }}</td>
-                <td>{{ business.membershipType }}</td>
+                <td>{{ viber.displayName }}</td>
+                <td>{{ viber.emailAddress }}</td>
+                <td>{{ viber.gender }}</td>
+                <td>{{ viber.town }}</td>
+                <td>{{ viber.province }}</td>
+                <td>{{ viber.points }}</td>
+                <td>{{ viber.rated }}</td>
                 <td>
                   <!-- <span
-                    data-toggle="modal"
-                    data-target="#createOrderModal"
-                    class=" btn btn-danger btn-sm mr-1"
-                    ><i class="fa fa-trash" aria-hidden="true"></i
-                  ></span> -->
+                      data-toggle="modal"
+                      data-target="#createOrderModal"
+                      class=" btn btn-danger btn-sm mr-1"
+                      ><i class="fa fa-trash" aria-hidden="true"></i
+                    ></span> -->
                 </td>
               </tr>
             </tbody>
@@ -85,7 +89,7 @@
         </div>
       </ng-template>
       <ng-template #elseBlock>
-        <h4>No business accounts available</h4>
+        <h4>No vibers' accounts available</h4>
       </ng-template>
     </div>
   </div>

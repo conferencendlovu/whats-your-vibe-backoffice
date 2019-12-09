@@ -18,6 +18,10 @@ export class CategoriesComponent implements OnInit {
   selectedImage: any = null;
   imgSrc = "/assets/images/place_holder_image.png";
   editImage: string;
+  loading = false;
+  success = false;
+  failer = false;
+  errorMessage = "";
 
   constructor(
     private service: FirebaseService,
@@ -56,18 +60,7 @@ export class CategoriesComponent implements OnInit {
   initForm(): void {
     this.addCategoryForm = this.formBuilder.group({
       title: ["", Validators.required],
-      description: ["", Validators.required],
       url: [""]
-    });
-  }
-
-  editCategory(category) {
-    this.editImage = category.url;
-
-    this.editCategoryForm = this.formBuilder.group({
-      title: [category.title, Validators.required],
-      description: [category.description, Validators.required],
-      url: [category.url]
     });
   }
 
@@ -93,6 +86,8 @@ export class CategoriesComponent implements OnInit {
 
     const fileRef = this.storage.ref(filePath);
 
+    this.loading = true;
+
     this.storage
       .upload(filePath, this.selectedImage)
       .snapshotChanges()
@@ -105,16 +100,32 @@ export class CategoriesComponent implements OnInit {
               .addCategory(formData)
               .then(() => {
                 console.log(this.addCategoryForm.value);
-
+                this.loading = false;
                 this.initForm();
+                this.success = true;
+                this.imgSrc = "/assets/images/place_holder_image.png";
               })
               .catch(err => {
                 console.log("An error occured");
+                this.loading = false;
+                this.errorMessage = err;
+                this.failer = true;
               });
           });
         })
       )
-      .subscribe();
+      .subscribe(
+        () => {
+          console.log("loading image");
+        },
+        error => {
+          console.log(error);
+          this.initForm();
+          this.loading = false;
+          this.errorMessage = error;
+          this.failer = true;
+        }
+      );
   }
 
   removeCategory(key) {

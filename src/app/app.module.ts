@@ -26,6 +26,7 @@ import { BusinessesComponent } from "./components/businesses/businesses.componen
 import { CategoriesComponent } from "./components/categories/categories.component";
 import { EventsComponent } from "./components/events/events.component";
 import { LoginComponent } from "./components/login/login.component";
+import { VibersComponent } from './components/vibers/vibers.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LoginComponent } from "./components/login/login.component";
     BusinessesComponent,
     CategoriesComponent,
     EventsComponent,
-    LoginComponent
+    LoginComponent,
+    VibersComponent
   ],
   imports: [
     BrowserModule,

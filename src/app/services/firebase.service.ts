@@ -7,20 +7,20 @@ import { AngularFirestore } from "@angular/fire/firestore";
 export class FirebaseService {
   constructor(private db: AngularFirestore) {}
 
-  public memberships() {
-    return this.db.collection("memberships").snapshotChanges();
+  public getTotalCheckins() {
+    return this.db.collection("viber_checkins").valueChanges();
   }
 
   public getTotalBusiness() {
-    return this.db.collection("businessUsers").snapshotChanges();
+    return this.db.collection("businessUsers").valueChanges();
   }
 
   public getTotalVibers() {
-    return this.db.collection("users").snapshotChanges();
+    return this.db.collection("vibers").valueChanges();
   }
 
   public getTotalEvents() {
-    return this.db.collection("vibes").snapshotChanges();
+    return this.db.collection("vibes").valueChanges();
   }
 
   public updateEventStatus(event) {
@@ -39,11 +39,11 @@ export class FirebaseService {
   }
 
   public businessUsers() {
-    return this.db.collection("businessUsers").valueChanges();
+    return this.db.collection("businessUsers").snapshotChanges();
   }
 
   public vibers() {
-    return this.db.collection("users").valueChanges();
+    return this.db.collection("vibers").snapshotChanges();
   }
 
   public suspendBusinessUser(id) {
@@ -67,6 +67,13 @@ export class FirebaseService {
       .collection("categories")
       .doc(key)
       .set(category);
+  }
+
+  public editCategory(category) {
+    return this.db
+      .collection("categories")
+      .doc(category.key)
+      .update(category);
   }
 
   public removeCategory(key) {

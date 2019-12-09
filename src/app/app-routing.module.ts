@@ -8,6 +8,7 @@ import { ConsumersComponent } from "./components/consumers/consumers.component";
 import { AnalyticsComponent } from "./components/analytics/analytics.component";
 import { EventsComponent } from "./components/events/events.component";
 import { LoginComponent } from "./components/login/login.component";
+import { VibersComponent } from "./components/vibers/vibers.component";
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: "businesses",
     component: BusinessesComponent
+  },
+  {
+    path: "vibers",
+    component: VibersComponent
   },
   {
     path: "",

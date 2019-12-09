@@ -1,5 +1,5 @@
 <!-- Page Wrapper -->
-<div id="wrapper">
+<div id="wrapper" *ngIf="authService.uid | async as uid; else login">
   <!-- Sidebar -->
   <ul
     class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
@@ -88,7 +88,7 @@
               aria-expanded="false"
             >
               <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                Conference</span
+                {{ authService.username | async }}</span
               >
               <img
                 class="img-profile rounded-circle"
@@ -111,7 +111,6 @@
         </ul>
       </nav>
       <!-- End of Topbar -->
-
       <router-outlet></router-outlet>
     </div>
     <!-- End of Main Content -->
@@ -132,8 +131,72 @@
   <!-- End of Content Wrapper -->
 </div>
 <!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-  <i class="fas fa-angle-up"></i>
-</a>
+<ng-template #login>
+  <div class="container ">
+    <!-- Outer Row -->
+    <div class="row">
+      <div class="col-xl-10 col-lg-12 col-md-9 ">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">
+                      Whats Your Vibe<br /><span class="text-muted"
+                        ><small>ADMINISTRATION CONSOLE</small></span
+                      >
+                    </h1>
+                  </div>
+                  <form
+                    class="user"
+                    [formGroup]="loginForm"
+                    (submit)="onSubmit(loginForm.value)"
+                  >
+                    <div class="form-group">
+                      <input
+                        formControlName="password"
+                        required
+                        type="text"
+                        class="form-control form-control-user"
+                        id="username"
+                        maxlength="10"
+                        aria-describedby="WYV Admin Username"
+                        placeholder="Username"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        formControlName="password"
+                        required
+                        type="password"
+                        class="form-control form-control-user"
+                        id="password"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <button
+                      [disabled]="!loginForm.valid"
+                      type="submit"
+                      class="btn btn-primary btn-user btn-block"
+                    >
+                      Login
+                    </button>
+                  </form>
+                  <hr />
+                  <div class="text-center">
+                    <a class="small" href="https://www.jaspa.co.za"
+                      >Powered by Jaspa Software</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
