@@ -9,27 +9,9 @@ import { auth } from "firebase";
   providedIn: "root"
 })
 export class AuthService {
-  uid;
-  username = observableOf("Administrator");
-  isAdmin = observableOf(true);
-  photoURl = observableOf("link-here");
-
-  constructor(private afAuth: AngularFireAuth, private router: Router) {
-    this.getUserState();
-  }
+  constructor(private afAuth: AngularFireAuth, private router: Router) {}
 
   getUserState() {
-    this.uid = this.afAuth.authState.pipe(
-      map(authState => {
-        if (!authState) {
-          return null;
-        } else {
-          authState.uid;
-          console.log(authState.uid);
-        }
-      })
-    );
-
     return this.afAuth.authState;
   }
 
@@ -42,6 +24,5 @@ export class AuthService {
 
   doLogout() {
     this.afAuth.auth.signOut();
-    this.getUserState();
   }
 }

@@ -14,6 +14,7 @@ export class AppComponent {
   errorMessage = null;
   loading = false;
   buttonText = "LOGIN";
+  user: firebase.User;
 
   constructor(
     private router: Router,
@@ -22,6 +23,9 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
+    this.authService.getUserState().subscribe(user => {
+      this.user = user;
+    });
     this.initForm();
   }
 
@@ -34,7 +38,6 @@ export class AppComponent {
 
   doLogout() {
     this.authService.doLogout();
-    this.authService.uid = null;
   }
 
   onSubmit(formData) {
@@ -48,7 +51,7 @@ export class AppComponent {
           console.log(data);
           this.loading = false;
           this.buttonText = "LOGIN";
-          this.authService.getUserState();
+          // this.authService.uid = data.user.uid.toString()
         } else {
           console.log("no data");
           this.buttonText = "LOGIN";
